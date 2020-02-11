@@ -43,12 +43,13 @@ int main()
         }
         else if(strcmp(a1,s5[0])==0) //看看
         {
+        	flag2 = 0;
             scanf("%s",a5);
             for(j=0;j<i;j++)
             {
-                if(strcmp(a5,b[j])==0)
+                if(strcmp(a5,b[j])==0) // 匹配到对应的变量名 
                 {
-                    change4(a[j]);
+                    change4(a[j]); // 判断是否负数，然后转数字 
                     printf("\n");
                     flag2=1;
                     break;
