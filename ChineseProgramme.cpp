@@ -15,7 +15,7 @@ char a1[10],a2[10],a3[10],a4[10],a5[20];
 char op[10],n[10];
 char c1[20],c2[20],c3[20],c4[20],c5[20],c6[20],c7[20],c8[20],c9[20];
 int sum=0,num,num2=0;
-char type[10],name[10],same[10];
+char type[10],name[20],same[10];
 
 int change1(char n[]);
 int change2(char n[]);
@@ -32,19 +32,40 @@ int main()
     int a[20]={0};
     char b[10][10]={"\0"};
     int i=0,flag1=0,j=0,flag2=0;
+
     printf("请输入要求：\n");
 	while(scanf("%s",a1)!=EOF)
     {
         if(strcmp(a1,s1[0])==0)//判断是否为整数
         {
-            scanf("%s %s %s",b[i],same,n);
-            a[i]=change2(n);
-            i++;
+        	scanf("%s",name);
+        	for(j=0;j<=i;j++)
+        		if(strcmp(name,b[j])==0)
+        		{
+        			flag1=1;
+        			break;
+        		}
+        	if(flag1==1)
+        	{
+        		scanf("%s %s",same,n);
+        		strcpy(b[j],name);
+        		a[j]=change2(n);
+        		flag1=0; 
+        	}
+        	else
+        	{
+        		scanf("%s %s",same,n);
+        		strcpy(b[i],name);
+        		a[i]=change2(n);
+        		i++;
+			}
+        		
         }
         else if(strcmp(a1,s5[0])==0) //看看
         {
+        	flag2=0; 
             scanf("%s",a5);
-            for(j=0;j<i;j++)
+            for(j=0;j<=i;j++)
             {
                 if(strcmp(a5,b[j])==0)
                 {
@@ -72,7 +93,7 @@ int main()
             }
             else
             {
-                for(j=0;j<i;j++)
+                for(j=0;j<=i;j++)
                     if(strcmp(c1,b[j])==0)
                     {   
                         num=change2(c3);
@@ -81,7 +102,7 @@ int main()
                         {
                             if(a[j]>num)
                             {
-                                for(int k=0;k<i;k++)
+                                for(int k=0;k<=i;k++)
                                     if(strcmp(c5,b[k])==0)
                                         a[k]=cal(c6,num2,a[k]);
                             }
@@ -92,7 +113,7 @@ int main()
                         {
                             if(a[j]<num)
                             {
-                                for(int k=0;k<i;k++)
+                                for(int k=0;k<=i;k++)
                                     if(strcmp(c5,b[k])==0)
                                         a[k]=cal(c6,num2,a[k]);
                             }
@@ -103,7 +124,7 @@ int main()
                         {
                             if(a[j]==num)
                             {
-                                for(int k=0;k<i;k++)
+                                for(int k=0;k<=i;k++)
                                     if(strcmp(c5,b[k])==0)
                                         a[k]=cal(c6,num2,a[k]);
                             }
@@ -116,7 +137,7 @@ int main()
         else  //加减
         {   
             scanf("%s %s",a3,a4);
-            for(j=0;j<i;j++)
+            for(j=0;j<=i;j++)
                 if(strcmp(a1,b[j])==0)
                 {
                     num=change2(a4);
